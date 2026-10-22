@@ -1,3 +1,5 @@
+print("Name: B.Pranay Deep Chowdary")
+print("Reg No: 192472177 ")
 def check_string(s):
     state = 0
 
