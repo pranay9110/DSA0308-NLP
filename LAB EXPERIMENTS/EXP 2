@@ -1,5 +1,5 @@
 print("Name: B.Pranay Deep Chowdary")
-print("Reg No: 192472177 ")
+print("Reg No: 192472177")
 def check_string(s):
     state = 0
 
@@ -19,6 +19,10 @@ def check_string(s):
     else:
         print("Rejected")
 
-s = input("Enter a string: ")
-check_string(s)
+s1 = input("Enter a string for the accepted example: ")
+check_string(s1)
+
+s2 = input("Enter a string for the rejected example: ")
+check_string(s2)
+
 
