@@ -2,7 +2,6 @@ print("Name: B.Pranay Deep Chowdary")
 print("Reg No: 192472177")
 def check_string(s):
     state = 0
-
     for ch in s:
         if ch == 'a':
             state = 1
@@ -13,16 +12,13 @@ def check_string(s):
                 state = 0
         else:
             state = 0
-
     if state == 2:
         print("Accepted")
     else:
         print("Rejected")
-
-s1 = input("Enter a string for the accepted example: ")
+print("\n--- Accepted Example ---")
+s1 = input("Enter a string: ")
 check_string(s1)
-
-s2 = input("Enter a string for the rejected example: ")
+print("\n--- Rejected Example ---")
+s2 = input("Enter a string: ")
 check_string(s2)
-
-
