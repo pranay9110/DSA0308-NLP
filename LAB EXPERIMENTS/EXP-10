@@ -1,0 +1,16 @@
+print("Name: B.Pranay Deep Chowdary")
+print("Reg No: 192472177")
+words = ["The", "dog", "is", "playing", "football"]
+tags = ["NN", "NN", "NN", "NN", "NN"]
+rules = {
+    "The": "DT",
+    "is": "VBZ",
+    "playing": "VBG"
+}
+for i in range(len(words)):
+    if words[i] in rules:
+        tags[i] = rules[words[i]]
+print("Original Word\tInitial Tag\tFinal Tag")
+print("------------------------------------------")
+for word, initial, final in zip(words, ["NN"] * len(words), tags):
+    print(f"{word:<16}{initial:<16}{final}")
