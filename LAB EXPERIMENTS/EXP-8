@@ -1,0 +1,13 @@
+print("Name: B.Pranay Deep Chowdary")
+print("Reg No: 192472177")
+words = ["the", "dog", "barks"]
+probability = {
+    "the": {"DT": 0.9},
+    "dog": {"NN": 0.8, "VB": 0.2},
+    "barks": {"VB": 0.9, "NN": 0.1}
+}
+print("Original Word\tPOS Tag")
+print("----------------------------")
+for word in words:
+    tag = max(probability[word], key=probability[word].get)
+    print(f"{word:<16}{tag}")
