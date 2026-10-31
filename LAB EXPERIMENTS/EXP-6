@@ -1,0 +1,23 @@
+print("Name: B.Pranay Deep Chowdary")
+print("Reg No: 192472177")
+text = "I love Python. I love programming."
+words = text.lower().replace(".", "").split()
+bigrams = {}
+for i in range(len(words) - 1):
+    word = words[i]
+    if word not in bigrams:
+        bigrams[word] = []
+    bigrams[word].append(words[i + 1])
+print("Current Word\tNext Word")
+print("----------------------------")
+for word, next_words in bigrams.items():
+    for next_word in next_words:
+        print(f"{word:<16}{next_word}")
+print("\nGenerated Text:")
+word = "i"
+sentence = [word]
+for i in range(3):
+    if word in bigrams:
+        word = bigrams[word][0]
+        sentence.append(word)
+print(" ".join(sentence))
