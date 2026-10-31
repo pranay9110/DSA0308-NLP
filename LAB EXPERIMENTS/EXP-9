@@ -1,0 +1,18 @@
+print("Name: B.Pranay Deep Chowdary")
+print("Reg No: 192472177")
+import nltk
+patterns = [
+    (r'.*ing$', 'VBG'),
+    (r'.*ed$', 'VBD'),
+    (r'.*ly$', 'RB'),
+    (r'.*ous$', 'JJ'),
+    (r'.*s$', 'NNS'),
+    (r'.*', 'NN')
+]
+tagger = nltk.RegexpTagger(patterns)
+words = ["playing", "walked", "quickly", "dangerous", "books", "computer"]
+tags = tagger.tag(words)
+print("Original Word\tPOS Tag")
+print("--------------------------------")
+for word, tag in tags:
+    print(f"{word:<18}{tag}")
