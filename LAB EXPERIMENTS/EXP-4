@@ -1,0 +1,20 @@
+print("Name: B.Pranay Deep Chowdary")
+print("Reg No: 192472177")
+def plural(word):
+    state = 0
+    for ch in word:
+        if ch == 'y':
+            state = 1
+        elif ch in "aeiou":
+            state = 2
+        else:
+            state = 3
+    if word.endswith("y") and state == 1:
+        if len(word) > 1 and word[-2] not in "aeiou":
+            return word[:-1] + "ies"
+    if word.endswith(("s", "x", "z", "ch", "sh")):
+        return word + "es"
+    return word + "s"
+words = ["cat", "box", "baby", "dish", "book"]
+for word in words:
+    print(word, "->", plural(word))
