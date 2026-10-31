@@ -1,1 +1,7 @@
-
+print("Name: B.Pranay Deep Chowdary")
+print("Reg No: 192472177")
+from nltk.stem import WordNetLemmatizer
+lemmatizer = WordNetLemmatizer()
+words = ["cars", "mice", "running", "playing", "dogs"]
+for word in words:
+    print(word, ":", lemmatizer.lemmatize(word))
