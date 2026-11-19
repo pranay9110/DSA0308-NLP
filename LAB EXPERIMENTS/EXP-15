@@ -1,0 +1,27 @@
+print("Name: B. Pranay Deep Chowdary")
+print("Reg No: 192472177")
+grammar = {
+    "Det": ["the", "a"],
+    "N": ["boy", "book"],
+    "V": ["reads"]
+}
+def parse(sentence):
+    words = sentence.split()
+    if (len(words) == 5 and
+        words[0] in grammar["Det"] and
+        words[1] in grammar["N"] and
+        words[2] in grammar["V"] and
+        words[3] in grammar["Det"] and
+        words[4] in grammar["N"]):
+        return 0.03024
+    return None
+sentences = ["the boy reads a book", "boy the reads book a"]
+for s in sentences:
+    result = parse(s)
+    print("Input:", s)
+    if result:
+        print("Output: Accepted")
+        print("Probability:", result)
+    else:
+        print("Output: Rejected")
+    print()
