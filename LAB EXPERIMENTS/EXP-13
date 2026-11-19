@@ -1,0 +1,45 @@
+print("Name: B. Pranay Deep Chowdary")
+print("Reg No: 192472177")
+grammar = {
+    "S": [["NP", "VP"]],
+    "NP": [["Det", "N"]],
+    "VP": [["V", "NP"]],
+    "Det": [["the"], ["a"]],
+    "N": [["girl"], ["book"]],
+    "V": [["likes"], ["reads"]]
+}
+def parse(symbol, words, pos):
+    if symbol not in grammar:
+        if pos < len(words) and words[pos] == symbol:
+            return [symbol], pos + 1
+        return None, pos
+    for rule in grammar[symbol]:
+        children = []
+        current = pos
+        for item in rule:
+            tree, current = parse(item, words, current)
+            if tree is None:
+                break
+            children.append(tree)
+        else:
+            return [symbol] + children, current
+    return None, pos
+def display(tree, level=0):
+    print("  " * level + tree[0])
+    for child in tree[1:]:
+        display(child, level + 1)
+sentences = [
+    "the girl likes a book",
+    "girl the likes book a"
+]
+for sentence in sentences:
+    words = sentence.split()
+    print("Input:", sentence)
+    tree, position = parse("S", words, 0)
+    if tree and position == len(words):
+        print("Output: Sentence Accepted")
+        print("Parse Tree:")
+        display(tree)
+    else:
+        print("Output: Sentence Rejected")
+    print()
