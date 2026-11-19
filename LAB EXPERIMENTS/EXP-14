@@ -1,0 +1,29 @@
+print("Name: B. Pranay Deep Chowdary")
+print("Reg No: 192472177")
+singular_subjects = ["he", "she", "it"]
+plural_subjects = ["they", "we", "you"]
+singular_verbs = ["writes", "plays", "runs"]
+plural_verbs = ["write", "play", "run"]
+def check_agreement(sentence):
+    words = sentence.lower().split()
+    if len(words) != 2:
+        return False
+    subject, verb = words
+    if subject in singular_subjects:
+        return verb in singular_verbs
+    elif subject in plural_subjects:
+        return verb in plural_verbs
+    return False
+sentences = [
+    "she writes",
+    "he run",
+    "they play",
+    "we writes"
+]
+for sentence in sentences:
+    print("Input:", sentence)
+    if check_agreement(sentence):
+        print("Output: Correct Agreement")
+    else:
+        print("Output: Incorrect Agreement")
+    print()
