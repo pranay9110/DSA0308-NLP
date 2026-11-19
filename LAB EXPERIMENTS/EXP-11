@@ -1,0 +1,33 @@
+print("Name: B. Pranay Deep Chowdary")
+print("Reg No: 192472177")
+print()
+grammar = {
+    "S": [["NP", "VP"]],
+    "NP": [["Det", "N"]],
+    "VP": [["V", "NP"]],
+    "Det": [["the"], ["a"]],
+    "N": [["cat"], ["dog"]],
+    "V": [["chased"], ["saw"]]
+}
+def parse(symbol, words, pos):
+    if symbol not in grammar:
+        if pos < len(words) and words[pos] == symbol:
+            return pos + 1
+        return None
+    for rule in grammar[symbol]:
+        current = pos
+        for item in rule:
+            result = parse(item, words, current)
+            if result is None:
+                break
+            current = result
+        else:
+            return current
+    return None
+sentence = "the cat chased a dog".split()
+result = parse("S", sentence, 0)
+if result == len(sentence):
+    print("Sentence:", " ".join(sentence))
+    print("Result: Sentence Accepted")
+else:
+    print("Result: Sentence Rejected")
