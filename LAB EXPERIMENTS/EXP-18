@@ -1,0 +1,15 @@
+print("Name: B. Pranay Deep Chowdary")
+print("Reg No: 192472177")
+def check(sentence):
+    if sentence.startswith(("forall", "exists")):
+        if "(" in sentence and sentence.endswith("))"):
+            return "Accepted"
+    return "Rejected"
+sentences = [
+    "forall x (Student(x))",
+    "forall x Student(x"
+]
+for s in sentences:
+    print("Input:", s)
+    print("Output:", check(s))
+    print()
