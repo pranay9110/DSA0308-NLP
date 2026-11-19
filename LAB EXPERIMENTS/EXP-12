@@ -1,0 +1,50 @@
+print("Name: B. Pranay Deep Chowdary")
+print("Reg No: 192472177")
+grammar = {
+    "S": [["NP", "VP"]],
+    "NP": [["Det", "N"]],
+    "VP": [["V", "NP"]],
+    "Det": [["a"], ["the"]],
+    "N": [["boy"], ["dog"]],
+    "V": [["chased"], ["saw"]]
+}
+def earley(words):
+    n = len(words)
+    chart = [set() for _ in range(n + 1)]
+    chart[0].add(("S'", ("S",), 0, 0))
+    for i in range(n + 1):
+        while True:
+            old = len(chart[i])
+            for lhs, rhs, dot, start in list(chart[i]):
+                if dot < len(rhs):
+                    symbol = rhs[dot]
+                    if symbol in grammar:
+                        for rule in grammar[symbol]:
+                            chart[i].add(
+                                (symbol, tuple(rule), 0, i)
+                            )
+                    elif i < n and words[i] == symbol:
+                        chart[i + 1].add(
+                            (lhs, rhs, dot + 1, start)
+                        )
+                else:
+                    for plhs, prhs, pdot, pstart in list(chart[start]):
+                        if pdot < len(prhs) and prhs[pdot] == lhs:
+                            chart[i].add(
+                                (plhs, prhs, pdot + 1, pstart)
+                            )
+            if len(chart[i]) == old:
+                break
+    return ("S'", ("S",), 1, 0) in chart[n]
+sentences = [
+    "a boy chased the dog",
+    "boy a the chased dog"
+]
+for sentence in sentences:
+    words = sentence.split()
+    print("Input:", sentence)
+    if earley(words):
+        print("Output: Sentence Accepted")
+    else:
+        print("Output: Sentence Rejected")
+    print()
