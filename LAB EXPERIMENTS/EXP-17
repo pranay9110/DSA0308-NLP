@@ -1,0 +1,12 @@
+import nltk
+nltk.download('wordnet')
+from nltk.corpus import wordnet
+print("Name: B. Pranay Deep Chowdary")
+print("Reg No: 192472177")
+print("Experiment 17: WordNet\n"
+word = "happy"
+synsets = wordnet.synsets(word)
+print("Input Word:", word)
+print("\nWord Meanings:")
+for syn in synsets[:5]:
+    print(syn.name(), ":", syn.definition())
