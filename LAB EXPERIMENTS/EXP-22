@@ -1,0 +1,19 @@
+import nltk
+print("Name: B. Pranay Deep Chowdary")
+print("Reg No: 192472177")
+def reference_resolution(text):
+    words = nltk.word_tokenize(text)
+    tagged = nltk.pos_tag(words)
+    nouns = []
+    print("\nInput Text:", text)
+    print("\nReference Resolution:")
+    for word, tag in tagged:
+        if tag.startswith('NN'):
+            nouns.append(word)
+        elif tag in ['PRP', 'PRP$']:
+            if nouns:
+                print(word, "refers to", nouns[-1])
+            else:
+                print(word, "Reference not found")
+text = "Ravi is a student. He studies Python."
+reference_resolution(text)
