@@ -1,0 +1,32 @@
+import os
+import warnings
+import logging
+
+os.environ["HF_HUB_DISABLE_IMPLICIT_TOKEN"] = "1"
+os.environ["HF_HUB_DISABLE_PROGRESS_BARS"] = "1"
+os.environ["HF_HUB_DISABLE_SYMLINKS_WARNING"] = "1"
+os.environ["HF_HUB_DISABLE_PROGRESS_BARS"] = "1"
+os.environ["TRANSFORMERS_VERBOSITY"] = "error"
+warnings.filterwarnings("ignore")
+logging.getLogger("transformers").setLevel(logging.ERROR)
+from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
+print("Name: B. Pranay Deep Chowdary")
+print("Reg No: 192472177")
+model_name = "Helsinki-NLP/opus-mt-en-fr"
+tokenizer = AutoTokenizer.from_pretrained(model_name)
+model = AutoModelForSeq2SeqLM.from_pretrained(model_name)
+def translate_text(text):
+    inputs = tokenizer(text, return_tensors="pt")
+    outputs = model.generate(
+        **inputs,
+        max_new_tokens=100
+    )
+    translation = tokenizer.decode(
+        outputs[0],
+        skip_special_tokens=True
+    )
+    print("\nEnglish Text:", text)
+    print("\nFrench Translation:")
+    print(translation)
+text = input("Enter English Sentence: ")
+translate_text(text)
