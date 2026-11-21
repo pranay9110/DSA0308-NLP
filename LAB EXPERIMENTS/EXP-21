@@ -1,0 +1,20 @@
+import nltk
+print("Name: B. Pranay Deep Chowdary")
+print("Reg No: 192472177")
+def semantic_analysis(sentence):
+    words = nltk.word_tokenize(sentence)
+    tagged = nltk.pos_tag(words)
+    print("\nInput Sentence:", sentence)
+    print("\nWord Analysis:")
+    for word, tag in tagged:
+        print(word, ":", tag)
+    print("\nNoun Phrases:")
+    grammar = "NP: {<DT>?<JJ>*<NN.*>+}"
+    parser = nltk.RegexpParser(grammar)
+    tree = parser.parse(tagged)
+    for subtree in tree.subtrees():
+        if subtree.label() == 'NP':
+            phrase = " ".join(word for word, tag in subtree.leaves())
+            print(phrase)
+sentence = "The intelligent student reads a book"
+semantic_analysis(sentence)
