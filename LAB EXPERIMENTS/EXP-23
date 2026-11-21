@@ -1,0 +1,30 @@
+from nltk.tokenize import sent_tokenize
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
+print("Name: B. Pranay Deep Chowdary")
+print("Reg No: 192472177")
+def coherence_check(text):
+    sentences = sent_tokenize(text)
+    print("\nInput Text:", text)
+    print("\nTotal Sentences:", len(sentences))
+    if len(sentences) < 2:
+        print("Not enough sentences")
+        return
+    vectorizer = TfidfVectorizer()
+    vectors = vectorizer.fit_transform(sentences)
+    scores = []
+    for i in range(len(sentences)-1):
+        score = cosine_similarity(
+            vectors[i], vectors[i+1]
+        )[0][0]
+        scores.append(score)
+        print("\nSentence Pair:", i+1)
+        print("Similarity:", round(score, 2))
+    average = sum(scores) / len(scores)
+    print("\nCoherence Score:", round(average, 2))
+    if average > 0.1:
+        print("Text has some topic continuity")
+    else:
+        print("Text has low topic continuity")
+text = "Python is a programming language. Python is easy to learn. Programming is useful."
+coherence_check(text)
