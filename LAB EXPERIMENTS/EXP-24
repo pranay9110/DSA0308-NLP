@@ -1,0 +1,24 @@
+print("Name: B. Pranay Deep Chowdary")
+print("Reg No: 192472177")
+def dialog_act(sentence):
+    sentence = sentence.lower()
+    print("\nUser:", sentence)
+    if any(word in sentence for word in ["hello", "hi", "hey"]):
+        act = "Greeting"
+    elif any(word in sentence for word in ["thank", "thanks"]):
+        act = "Thanking"
+    elif any(word in sentence for word in ["bye", "goodbye"]):
+        act = "Goodbye"
+    elif sentence.endswith("?"):
+        act = "Question"
+    elif any(word in sentence for word in ["please", "can you"]):
+        act = "Request"
+    else:
+        act = "Statement"
+    print("Dialog Act:", act)
+while True:
+    text = input("\nEnter a sentence (exit to stop): ")
+    if text.lower() == "exit":
+        print("Conversation Ended")
+        break
+    dialog_act(text)
