@@ -1,0 +1,13 @@
+from nltk.wsd import lesk
+print("Name: B. Pranay Deep Chowdary")
+print("Reg No: 192472177")
+sentence = "I deposited money in the bank"
+word = "bank"
+sense = lesk(sentence.split(), word)
+print("\nSentence:", sentence)
+print("Target Word:", word)
+if sense:
+    print("Meaning:", sense.definition())
+    print("Synonyms:", sense.lemma_names())
+else:
+    print("Meaning not found")
